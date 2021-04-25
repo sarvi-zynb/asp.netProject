@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebAppProject.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+<style>
+     td,  th,  td{
+        text-align:right;
+    }
+</style>
+
+
+
+<h2>دسته بندی</h2>
+<p>
+    @Html.ActionLink("ساختن دسته بندی جدید", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            لیست دسته بندی ها :
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("ویرایش", "Edit", new { id=item.CategoryId }) |
+            @Html.ActionLink("جزئیات", "Details", new { id=item.CategoryId }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.CategoryId })
+        </td>
+    </tr>
+}
+
+</table>

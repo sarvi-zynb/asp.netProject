@@ -1,0 +1,70 @@
+﻿@model WebAppProject.Models.Products
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+
+<h2>حذف</h2>
+
+<div>
+    <h4>محصول</h4>
+    <hr />
+ 
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.ProductName) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.ProductName)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Category.CategoryName) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Category.CategoryName)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.UnitPrice) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.UnitPrice)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.UnitsInStock) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.UnitsInStock)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Description) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Description)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Image) :</b></li>
+        <li class="list-inline-item">
+            <div class="main-image">
+                @if (Model.Image != null)
+                {
+                    var base64 = Convert.ToBase64String(Model.Image);
+                    var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                    <img src="@imgsrc" title="@Html.DisplayFor(model => model.ProductName)" style="height: 250px;">
+                }
+                else
+                {
+                    <img src="" style="height: 250px;">
+                }
+            </div>
+        </li>
+    </ul>
+    
+    <br />
+    <span>آیا از حذف این آیتم مطمئن هستید؟</span>
+           
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-default" /> |
+            @Html.ActionLink("بازگشت به لیست", "ProductList")
+        </div>
+    }
+</div>

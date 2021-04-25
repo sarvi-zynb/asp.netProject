@@ -1,0 +1,71 @@
+﻿@model WebAppProject.Models.Products
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutForProductDetail.cshtml";
+}
+
+
+<div class="container-fluid" style="background: #fff;width: 90%;text-align: center;">
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row bsp_row-underline">
+                <div class="text-right col-md-6">
+                    <h2>نام کالا : @Html.DisplayFor(model => model.ProductName)</h2>
+                    <h3>قیمت : @Html.DisplayFor(model => model.UnitPrice) تومان</h3>
+                    <button class="btn" style="background:#ff80bf;outline: none;">
+                        <a onclick="AddToCart(@Html.DisplayFor(model => model.ProductsId))">
+                            افزودن به سبد خرید
+                            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        </a>
+                    </button>
+                    <p>ارسال ظرف مدت یک هفته بعد از ثبت سفارش</p>
+                </div>
+                <div></div>
+                <div class="col-md-6">
+                    <div class="main-image" style="border: 1px solid #808080;">
+                        @if (Model.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(Model.Image);
+                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                            <img src="@imgsrc" title="@Html.DisplayFor(model => model.ProductName)" style="height: 250px;">
+                        }
+                        else
+                        {
+                            <img src="" style="height: 250px;">
+                        }
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="flex-column">
+        <div class="col-md-12">
+            <div class="text-right col-md-4" style="border-right: 1px solid #808080;">
+                <h3><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> شرایط استفاده</h3>
+                <hr />
+                <ul>
+                    <li><i class="fa fa-dot-circle-o" aria-hidden="true"></i> هزینه ارسال در شهر تهران فقط 5000 تومان</li>
+                    <li><i class="fa fa-dot-circle-o" aria-hidden="true"></i> ارسال سفارشات در تهران حداکثر 3 روز بعد از آخرین ثبت سفارش</li>
+                    <li><i class="fa fa-dot-circle-o" aria-hidden="true"></i> ثبت درخواست ارسال پستی به عهده خریدار می باشد</li>
+                    <li> <i class="fa fa-dot-circle-o" aria-hidden="true"></i> مدت زمان تحویل سفارشات به پست حداکثر دو روز کاری بعد از ثبت درخواست ارسال پستی</li>
+                    <li><i class="fa fa-dot-circle-o" aria-hidden="true"></i> در صورت مشکل در تامین موجودی، سفارشات لغو و تمام مبلغ به حساب کاربری شما برگردانده میشود</li>
+                    <li><i class="fa fa-dot-circle-o" aria-hidden="true"></i> ارسال به تمامی شهرستان ها با هزینه ثابت 16,000 تومان توسط پست پیشتاز و هزینه ثابت 18,000 توسط پست چاپار</li>
+                </ul>
+            </div>
+            <div class="text-right col-md-8" >
+                <h3><i class="fa fa-bell" aria-hidden="true"></i> توضیحات این کالا : </h3>
+                <hr />
+                <h5 style="line-height: 2em;">@Html.DisplayFor(model => model.Description)</h5>
+                <br />
+                
+            </div>
+        </div>
+
+        <br />
+    </div>
+</div>

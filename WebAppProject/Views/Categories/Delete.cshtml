@@ -1,0 +1,30 @@
+﻿@model WebAppProject.Models.Category
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+
+
+
+
+<div>
+    <h2>حذف</h2>
+    <h4>دسته بندی</h4>
+    <hr />
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.CategoryName) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.CategoryName)</li>
+    </ul>
+    <br />
+    <span>آیا از حذف این آیتم مطمئن هستید؟</span>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-default" /> |
+            @Html.ActionLink("بازگشت به لیست", "Index")
+        </div>
+    }
+</div>

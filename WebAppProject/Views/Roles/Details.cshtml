@@ -1,0 +1,22 @@
+﻿@model WebAppProject.Models.Role
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+
+<h2>جزئیات</h2>
+
+<div>
+    <h4>نقش</h4>
+    <hr />
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.RoleName) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.RoleName)</li>
+    </ul>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.RoleId }) |
+    @Html.ActionLink("بازگشت به لیست", "Index")
+</p>

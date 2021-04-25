@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebAppProject.Models.Products>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+<style>
+    td, th, td {
+        text-align: right;
+    }
+</style>
+<h2>محصولات</h2>
+
+<p>
+    @Html.ActionLink("افزودن محصول جدید", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                <div class="main-image">
+                    @if (item.Image != null)
+                {
+                    var base64 = Convert.ToBase64String(item.Image);
+                    var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                        <img src="@imgsrc" title="@Html.DisplayFor(modelItem => item.ProductName)" style="height: 90px;">
+                    }
+                    else
+                    {
+                        <img src="" style="height: 250px;">
+                    }
+                </div>
+            </td>
+            <td>
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.ProductsId }) |
+                @Html.ActionLink("جزئیات", "ProductDetails", new { id = item.ProductsId }) |
+                @Html.ActionLink("حذف", "Delete", new { id = item.ProductsId })
+            </td>
+
+        </tr>
+
+    }
+
+</table>

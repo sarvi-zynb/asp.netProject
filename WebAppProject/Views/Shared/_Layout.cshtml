@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+       
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+
+</head>
+<body style="direction:rtl;padding:0;margin:0; font-size:16px; background-color:#eaeded; color:#1a1a1a;">
+
+    <div class="header" style="background-color:#fff;padding:15px 15px 0px 15px;;margin-right:8px;margin-left:8px">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="nav navbar-nav col-md-12">
+                    <div class="top-left col-md-6" style="direction:ltr;">
+                        <p>شماره تلفن مرکز تماس : 021-22222</p>
+                    </div>
+                    <div class="top-right col-md-6">
+                        <a href="/Home/contact">تماس با ما</a>
+                    </div>
+                </div>
+                <br />
+                <hr />
+                <div class="col-md-12">
+                    <div class="logo col-md-3">
+                        <a href="/Home">
+                            <img src="~/Image/onlineshopping.jpg" style="margin-bottom: 20px;width: 250px;height: 60px;" />
+                        </a>
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <div class="">
+                            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @id = "login" }))
+                            {
+                                <input id="search" type="text" name="q" placeholder="جستجو کنید..." />
+                                <button type="submit" style="background: #f0f0f1;border: none;outline: none;height: 33px;position: absolute;margin-bottom: 20px;"><span class="fa fa-search"></span></button>
+                            }
+                        </div>
+                    </div>
+                    <div class="login col-md-3">
+                        @if (ViewBag.UserIsAlive != null)
+                        {
+                            <h5>@RenderSection("UserIsAlive", false)</h5>
+
+                        }
+                        else if (ViewBag.EmploeeIsAlive != null)
+                        {
+                            <h5>@RenderSection("EmploeeIsAlive", false)</h5>
+
+                        }
+                        else
+                        {
+                            <h4 style="margin-bottom: 30px;">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i> <a href="/Account/login">ورود</a> / <a href="/Account/Register">ثبت نام</a>
+                            </h4>
+                        }
+
+                    </div>
+                    <div class="cart col-md-2">
+                        <a href="/cart" style="border: 4px solid #f0f0f1;padding: 10px;border-radius: 10px;">سبد خرید <i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="count" id="shopcart">0</span></a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <div class="navbar navbar-inverse" style="background-color: #fff;border:none;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" style="padding-top:10px">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/Products/TopSell"> پرفروش ترین محصولات</a></li>
+                        <li><a href="/Products"> جدیدترین محصولات</a></li>
+                        <li>
+                            <a href="/Products/ForFemale">پوشاک زنانه </a>
+                        </li>
+                        <li>
+                            <a href="/Products/ForMale">پوشاک مردانه </a>
+                        </li>
+                        <li><a href="/Home">صفحه اصلی</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div style="direction:ltr;margin-left: 15px;">
+        <div class="row">
+            @RenderBody()
+        </div>
+
+    </div>
+    <br />
+
+
+    <footer class="container-fluid text-center">
+        <div class="flex-column col-md-12">
+            <div class="col-md-5">
+                <ul class="list">
+                    <li><h5><b>نمادها</b><div class="line"></div></h5></li>
+                    <li><a href="#">نماد</a></li>
+                    <li><a href="#">نماد</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul class="list">
+                    <li><h5><b>شبکه های اجتماعی</b><div class="line"></div></h5></li>
+                    <li><a href="#" title="Facebook"><i class="fa fa-telegram" aria-hidden="true"></i> تلگرام</a></li>
+                    <li><a href="#" title="Twitter"> <i class="fa fa-instagram" aria-hidden="true"></i> اینستاگرام</a></li>
+                    <li><a href="#" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i> فیسبوک</a></li>
+                    <li><a href="#" title="Twitter"><i class="fa fa-twitter-square" aria-hidden="true"></i> توییتر</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-2">
+                <ul class="list">
+                    <li><h5><b>خدمات مشتریان</b><div class="line"></div></h5></li>
+                    <li><a href="/home/faq"><i class="fa fa-question-circle" aria-hidden="true"></i> پرسش و پاسخ</a></li>
+                    <li><a href="/home/contact"><i class="fa fa-life-ring" aria-hidden="true"></i> پشتیبانی</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <ul class="list">
+                    <li><h5><b>فروشگاه آنلاین</b><div class="line"></div></h5></li>
+                    <li><a href="/home/about">درباره ما</a></li>
+                    <li><a href="/home/contact">تماس با ما</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="copyright col-md-12">
+            <hr />
+            <p>2020 All Right Receved</p>
+        </div>
+
+    </footer>
+
+
+    <!--Start ajax-->
+    <script>
+        function AddToCart(id) {
+            $.ajax({
+                url: "/Cart/AddToCart/" + id,
+                type: "Get"
+            }).done(function (result) {
+                $("#shopcart").html(result);
+            });
+        }
+        $(function () {
+            $("#shopcart").load("/Cart/ShopCartCount");
+        });
+    </script>
+    <!--End ajax-->
+    <!--Start Slider-->
+    <script>
+        jQuery(document).ready(function ($) {
+
+            setInterval(function () {
+                moveRight();
+            }, 6000);
+
+            var slideCount = $('#slider ul li').length;
+            var slideWidth = $('#slider ul li').width();
+            var slideHeight = $('#slider ul li').height();
+            var sliderUlWidth = slideCount * slideWidth;
+
+            $('#slider').css({ width: slideWidth, height: slideHeight });
+
+            $('#slider ul').css({ width: sliderUlWidth, marginLeft: -slideWidth });
+
+            $('#slider ul li:last-child').prependTo('#slider ul');
+
+            function moveLeft() {
+                $('#slider ul').animate({
+                    left: +slideWidth
+                }, 200, function () {
+                    $('#slider ul li:last-child').prependTo('#slider ul');
+                    $('#slider ul').css('left', '');
+                });
+            };
+
+            function moveRight() {
+                $('#slider ul').animate({
+                    left: -slideWidth
+                }, 600, function () {
+                    $('#slider ul li:first-child').appendTo('#slider ul');
+                    $('#slider ul').css('left', '');
+                });
+            };
+
+            $('a.control_prev').click(function () {
+                moveLeft();
+            });
+
+            $('a.control_next').click(function () {
+                moveRight();
+            });
+
+        });
+
+    </script>
+    <!--End Slider-->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+
+
+
+</html>

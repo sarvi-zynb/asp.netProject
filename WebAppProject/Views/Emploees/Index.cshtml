@@ -1,0 +1,62 @@
+﻿@model IEnumerable<WebAppProject.Models.Emploee>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+<style>
+    td, th, td {
+        text-align: right;
+    }
+</style>
+<h2>کارمندان</h2>
+
+<p>
+    @Html.ActionLink("ساختن کارمند جدید", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Role.RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role.RoleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.ActionLink("ویرایش", "Edit", new { id=item.EmploeeId }) |
+            @Html.ActionLink("جزئیات", "Details", new { id=item.EmploeeId }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.EmploeeId })
+        </td>
+    </tr>
+}
+
+</table>

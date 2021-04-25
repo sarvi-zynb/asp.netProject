@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebAppProject.Models.Orders>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+
+<style>
+    td, th, td {
+        text-align: right;
+    }
+</style>
+<h2>سفارشات</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Customers.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReciveDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customers.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReciveDate)
+        </td>
+        <td>
+            @Html.ActionLink("حذف", "Delete", new { id=item.OrdersId })
+        </td>
+    </tr>
+}
+
+</table>

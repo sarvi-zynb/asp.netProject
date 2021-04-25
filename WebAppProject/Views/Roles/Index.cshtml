@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebAppProject.Models.Role>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+<style>
+    td, th, td {
+        text-align: right;
+    }
+</style>
+
+<h2>نقش ها</h2>
+
+<p>
+    @Html.ActionLink("ساختن نقش جدید", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+        <td>
+            @Html.ActionLink("ویرایش", "Edit", new { id=item.RoleId }) |
+            @Html.ActionLink("جزئیات", "Details", new { id=item.RoleId }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.RoleId })
+        </td>
+    </tr>
+}
+
+</table>

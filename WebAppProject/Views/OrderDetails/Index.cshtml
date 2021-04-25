@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebAppProject.Models.OrderDetails>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+<style>
+    td, th, td {
+        text-align: right;
+    }
+</style>
+<h2>جزئیات سفارش</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            ProductId
+        </th>
+        <th>
+            OrdersId
+        </th>
+        <th>
+            قیمت واحد
+        </th>
+        <th>
+            تعداد
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrdersId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.ActionLink("حذف", "Delete", new { id=item.OrderDetailsId })
+        </td>
+    </tr>
+}
+
+</table>

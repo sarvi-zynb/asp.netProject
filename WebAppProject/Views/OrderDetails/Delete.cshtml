@@ -1,0 +1,44 @@
+﻿@model WebAppProject.Models.OrderDetails
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+
+<h2>حذف</h2>
+
+<div>
+    <h4>جزئیات سفارش</h4>
+    <hr />
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.OrdersId) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.OrdersId)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.ProductId) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.ProductId)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Quantity) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Quantity)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.UnitPrice) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.UnitPrice)</li>
+    </ul>
+    <br />
+    <span>آیا از حذف این آیتم مطمئن هستید؟</span>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-default" /> |
+            @Html.ActionLink("بازگشت به لیست", "Index")
+        </div>
+    }
+</div>

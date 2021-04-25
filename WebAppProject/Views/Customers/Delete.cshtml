@@ -1,0 +1,53 @@
+﻿@model WebAppProject.Models.Customers
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+
+<div>
+    <h2>حذف</h2>
+    <h4>دسته بندی</h4>
+    <hr />
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Role.RoleName) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Role.RoleName)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.FullName) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.FullName)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Address) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Address)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Email) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Email)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.PhoneNumber) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.PhoneNumber)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Gender) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Gender)</li>
+    </ul>
+    <br />
+    <span>آیا از حذف این آیتم مطمئن هستید؟</span>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-default" /> |
+            @Html.ActionLink("بازگشت به لیست", "Index")
+        </div>
+    }
+</div>

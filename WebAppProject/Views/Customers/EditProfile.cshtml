@@ -1,0 +1,117 @@
+﻿@model WebAppProject.Models.Customers
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.UserIsAlive != null)
+{
+    @section  UserIsAlive
+        {
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i><a class="active" href="/Customers">@ViewBag.UserIsAlive عزیز خوش آمدید</a> /  <a href="~/account/Logout">خروج <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    }
+
+}
+@if (ViewBag.EmploeeIsAlive != null)
+{
+    @section  EmploeeIsAlive
+        {
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i><a class="active" href="/Emploees">@ViewBag.EmploeeIsAlive عزیز خوش آمدید</a> /  <a href="~/account/Logout">خروج <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    }
+}
+<div class="col-md-12">
+    <br />
+    <div class="navbar navbar-inverse" style="background-color: #fff;border:none;">
+        <div class="col-md-12" style="padding-left:8px;padding-right:8px;text-align:right;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row bsp_row-underline">
+                            <div class="col-md-6"> </div>
+                            <div class="col-md-6">  </div>
+                            <div class="top-left col-md-6"></div>
+                            <div class="top-right col-md-6">
+                                <h3>: ویرایش پروفایل <i class="fa fa-pencil-square-o" aria-hidden="true"></i></h3>
+                            </div>
+                        </div>
+
+                        <div class="row" style="direction:rtl">
+                            <div class="col-md-12">
+                                @using (Html.BeginForm("EditProfile", "Customers", FormMethod.Post, new { @class = "well", @id = "login" }))
+            {
+
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(a => a.CustomersId)
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                                        </div>
+                                        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        
+                                    </div>
+
+                                    <br />
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                        </div>
+                                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                        @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        
+                                    </div>
+                                    <br />
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        </div>
+                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        
+                                    </div>
+                                    <br />
+                                    <div class="form-group form-check">
+                                        @Html.Label("مرد")
+                                        @Html.RadioButtonFor(model => model.Gender, "Male")
+                                        @Html.Label("زن")
+                                        @Html.RadioButtonFor(model => model.Gender, "Female")
+                                    </div>
+                                    <br />
+                                    <div class="form-group col-md12">
+                                        <div class="col-md-6">
+                                            <a href="/Customers" class="btn btn-default">بازگشت <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-primary">بروزرسانی <i class="fa fa-refresh" aria-hidden="true"></i></button>
+                                        </div>
+                                        
+                                        <br />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

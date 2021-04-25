@@ -1,0 +1,29 @@
+﻿@model WebAppProject.Models.Role
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+
+<h2>حذف</h2>
+
+<div>
+    <h4>نقش</h4>
+    <hr />
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.RoleName) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.RoleName)</li>
+    </ul>
+    <br />
+    <span>آیا از حذف این آیتم مطمئن هستید؟</span>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-default" /> |
+            @Html.ActionLink("بازگشت به لیست", "Index")
+        </div>
+    }
+</div>

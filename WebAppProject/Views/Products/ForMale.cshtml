@@ -1,0 +1,149 @@
+﻿@model IEnumerable<WebAppProject.Models.Products>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutForProduct.cshtml";
+}
+@if (ViewBag.UserIsAlive != null)
+{
+    @section  UserIsAlive
+        {
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i><a class="active" href="/Customers/CustomerDetail"> @ViewBag.UserIsAlive خوش آمدید</a> | <a href="~/account/Logout">خروج <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    }
+
+}
+@if (ViewBag.EmploeeIsAlive != null)
+{
+    @section  EmploeeIsAlive
+        {
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i><a class="active" href="/Emploees"> @ViewBag.EmploeeIsAlive خوش آمدید</a> |  <a href="~/account/Logout">خروج <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    }
+}
+
+<style>
+    .btn > a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .btn > a {
+        color: #3c4444;
+    }
+
+    .text {
+        background: #9a9d6a;
+        border: 1px solid #000;
+        opacity: 50%;
+    }
+</style>
+<br />
+<div class="col-md-12">
+    <div class="col-md-8">
+        <br />
+        <div class="navbar navbar-inverse" style="background-color: #fff;border:none;">
+            <div class="col-md-12" style="padding-left:8px;padding-right:8px;text-align:right;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row bsp_row-underline">
+                                <div class="col-md-6"> </div>
+                                <div class="col-md-6">  </div>
+                                <div class="top-right col-md-12">
+                                    <span class="pull-right bsp_deal-text"> پوشاک مردانه</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @if (ViewBag.error == null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <div class="col-md-3 bsp_padding-0">
+                                            <div class="bsp_bbb_item">
+                                                <div class="main-image">
+                                                    @if (item.Image != null)
+                                                    {
+                                                        var base64 = Convert.ToBase64String(item.Image);
+                                                        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                                                        <a href="/Products/Details/@item.ProductsId">
+                                                            <img src="@imgsrc" class="bsp_image" title="@Html.DisplayFor(modelItem => item.ProductName)" style="height: 250px;">
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="" style="height: 250px;">
+                                                    }
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <h4 class="bsp_card-title">@Html.DisplayFor(modelItem => item.ProductName)</h4>
+                                                    <p class="bsp_card-text">@item.UnitPrice.ToString("#,0 تومان")</p>
+                                                    <p>@ViewBag.Quantity فروخته شده</p>
+                                                    <button class="btn" style="background:#ff80bf;outline: none;">
+                                                        <a onclick="AddToCart(@item.ProductsId)">
+                                                            افزودن به سبد خرید
+                                                            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                                        </a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <h4 class="text-danger">@ViewBag.error</h4>
+
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <br />
+        <div class="navbar navbar-inverse" style="background-color: #fff;border:none;">
+            <div style="padding-left:8px;padding-right:8px;text-align:center;">
+                <h3>نحوه کار فروشگاه</h3>
+                <hr />
+                <div class="col-md-12">
+                    <h4>ضمانت اصالت <img src="~/Image/22.jpg" style="height:50px;" /></h4>
+                    <hr />
+                </div>
+                <div class="col-md-12">
+                    <p>تمامی کالاها اورجینال و با ضمانت اصل بودن از نمایندگی معتبر تهیه و ارائه می‌شوند.</p>
+                </div>
+                <br />
+                <div class="col-md-12">
+                    <h4>ارسال سریع و رایگان <img src="~/Image/3.3.jpg" style="height:50px;" /></h4>
+                    <hr />
+                </div>
+                <div class="col-md-12">
+                    <p>ارسال رایگان برای خریدهای بالای 150 هزار تومان و در زمان انتخابی مشتری به سریعترین شکل ممکن می‌باشد.</p>
+                </div>
+                <br />
+                <div class="col-md-12">
+                    <h4>ضمانت بازگشت کالا <img src="~/Image/4.4.jpg" style="height:50px;" /></h4>
+                    <hr />
+                </div>
+                <div class="col-md-12">
+                    <p>تا هفت روز برای احترام به انتخاب مشتریان کالای خریداری شده برگردانده می‌شود.</p>
+                </div>
+                <br />
+                <div class="col-md-12">
+                    <h4>خدمات پس از فروش <img src="~/Image/5.5.jpg" style="height:50px;" /></h4>
+                    <hr />
+                </div>
+                <div class="col-md-12">
+                    <p>میزبان صدای گرمتان هستیم. هدف تیم پشتیبانی بانی مد تلاش با تمام قوا برای ارائه بهترین خدمات به مشتریان عزیز می باشد.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+

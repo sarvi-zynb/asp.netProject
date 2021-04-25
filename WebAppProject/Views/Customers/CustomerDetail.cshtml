@@ -1,0 +1,122 @@
+﻿@model WebAppProject.Models.Customers
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.UserIsAlive != null)
+{
+    @section  UserIsAlive
+        {
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i><a class="active" href="/Customers"> @ViewBag.UserIsAlive خوش آمدید</a> | <a href="~/account/Logout">خروج <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    }
+
+}
+@if (ViewBag.EmploeeIsAlive != null)
+{
+    @section  EmploeeIsAlive
+        {
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i><a class="active" href="/Emploees"> @ViewBag.EmploeeIsAlive خوش آمدید</a> | <a href="~/account/Logout">خروج <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    }
+}
+<style>
+    #customers {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: right;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+        }
+
+    .table {
+        text-align: center;
+    }
+</style>
+
+<div class="col-md-12">
+    <br />
+    <div class="navbar navbar-inverse" style="background-color: #fff;border:none;">
+        <div class="col-md-12" style="padding-left:8px;padding-right:8px;text-align:right;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row bsp_row-underline">
+                            <div class="col-md-6"> </div>
+                            <div class="col-md-6">  </div>
+                            <div class="top-left col-md-6">
+                                <a href="/Customers/EditProfile/@Html.DisplayFor(a=>a.CustomersId)">
+                                    <span class="pull-left bsp_view-all">
+                                        ویرایش پروفایل <i class="fa fa-cog" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="top-right col-md-6">
+                                <h3>: آخرین سفارشات شما <i class="fa fa-list" aria-hidden="true"></i></h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                        </div>
+                        <table class="table table-bordered" dir="rtl" id="customers">
+                            <tr>
+                                <th>ردیف</th>
+                                <th scope="col">نام مشتری</th>
+                                <th scope="col">تاریخ سفارش</th>
+                                <th scope="col">نام محصول</th>
+                                <th scope="col">تعداد</th>
+                                <th scope="col">قیمت</th>
+                                <th scope="col">تاریخ ارسال</th>
+                                <th scope="col">تصویر</th>
+                            </tr>
+                            @foreach (var item in ViewBag.lastOrders as List<WebAppProject.Models.CustomersViewModel>)
+            {
+                                <tr>
+                                    @{ int rowNo = 0;}
+                                    <td class="success">@( rowNo += 1)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CustomerFullName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ReciveDate)</td>
+                                    <td>
+                                        @if (item.Image != null)
+                                        {
+                                            var base64 = Convert.ToBase64String(item.Image);
+                                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                                            <img src="@imgsrc" class="bsp_image" title="@Html.DisplayFor(modelItem => item.ProductName)" style="height: 90px;">
+
+                                        }
+                                        else
+                                        {
+                                            <img src="" style="height: 250px;">
+                                        }
+                                    </td>
+                                </tr>
+                                        }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

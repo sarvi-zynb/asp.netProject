@@ -1,0 +1,67 @@
+﻿@model WebAppProject.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="container" style="text-align:right;">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="navbar navbar-inverse" style="background-color: #fff;border:none;">
+                <div class="col-md-12" style="padding-left:8px;padding-right:8px;text-align:right;direction:rtl;">
+                    <div class="container-fluid text-right">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row bsp_row-underline">
+                                    <div class="col-md-6"> </div>
+                                    <div class="col-md-6">  </div>
+                                    <div class="col-md-12">
+                                        <span class="pull-right bsp_deal-text"> صفحه ورود به سایت</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-signin" }))
+                                    {
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", id = "validationCustomUsername", placeholder = "ایمیل", aria_describedby = "inputGroupPrepend", @required = "" } })
+                                            </div>
+                                            @Html.Label("ایمیل", new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+
+                                            <div class="col-md-10">
+
+                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", id = "validationCustomUsername", placeholder = "پسورد", aria_describedby = "inputGroupPrepend", @required = "" } })
+                                            </div>
+                                            @Html.Label("پسورد", new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                                        </div>
+                                        <br />
+                                        <div class="form-group col-md12">
+                                            <div class="col-md-6">
+                                                <a href="/Home" class="btn btn-default"> بازگشت به صفحه اصلی <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="submit" class="btn btn-primary"> ورود <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                                                <p class="text-danger">@ViewBag.error</p>
+                                            </div>
+
+                                            <div class="col-md-12"> </div>
+                                            <br />
+                                        </div>
+                                        <p><a href="/Account/ForgotPassword">فراموشی رمز عبور</a> </p>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

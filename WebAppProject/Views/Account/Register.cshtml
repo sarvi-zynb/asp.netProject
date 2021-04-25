@@ -1,0 +1,103 @@
+﻿@model WebAppProject.Models.Customers
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="container" style="text-align:right;">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="navbar navbar-inverse" style="background-color: #fff;border:none;">
+                <div class="col-md-12" style="padding-left:8px;padding-right:8px;text-align:right;direction:rtl;">
+                    <div class="container-fluid text-right">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row bsp_row-underline">
+                                    <div class="col-md-6"> </div>
+                                    <div class="col-md-6">  </div>
+                                    <div class="col-md-12">
+                                        <span class="pull-right bsp_deal-text"> صفحه ثبت نام</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-signin" }))
+                                    {
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+
+                                                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", id = "validationCustomUsername", placeholder = "نام کامل خود را وارد کنید", aria_describedby = "inputGroupPrepend", @required = "" } })
+                                            </div>
+                                            @Html.LabelFor(model => model.FullName, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+
+                                            <div class="col-md-10">
+
+                                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", id = "validationCustomUsername", placeholder = "شماره موبایل خود را وارد کنید", aria_describedby = "inputGroupPrepend", @required = "" } })
+                                            </div>
+                                            @Html.LabelFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+
+                                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", id = "validationCustomUsername", placeholder = "آدرس خود را وارد کنید", aria_describedby = "inputGroupPrepend", @required = "" } })
+                                            </div>
+                                            @Html.LabelFor(model => model.Address, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+
+                                            <div class="col-md-10">
+
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", id = "validationCustomUsername", placeholder = "ایمیل خود را وارد کنید", aria_describedby = "inputGroupPrepend", @required = "" } })
+                                            </div>
+                                            @Html.LabelFor(model => model.Email, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+
+                                            <div class="col-md-10">
+
+                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", id = "validationCustomUsername", placeholder = "پسورد خود را وارد کنید", aria_describedby = "inputGroupPrepend", @required = "" } })
+                                            </div>
+                                            @Html.LabelFor(model => model.Password, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                                        </div>
+                                        <br />
+                                        <div class="form-group form-check">
+                                            <div class="col-md-10">
+                                                @Html.Label("مرد")
+                                                @Html.RadioButtonFor(model => model.Gender, "مرد")
+                                                @Html.Label("زن")
+                                                @Html.RadioButtonFor(model => model.Gender, "زن")
+                                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                            </div>
+                                            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div class="form-group col-md12">
+                                            <div class="col-md-6">
+                                                <a href="/Home" class="btn btn-default"> بازگشت به صفحه اصلی <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="submit" class="btn btn-primary"> ثبت نام <i class="fa fa-user-plus" aria-hidden="true"></i></button>
+                                            </div>
+
+                                            <div class="col-md-12"> </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container" style="text-align:right;direction:rtl;">
+    <div class="row">
+
+        <div class="container-fluid text-right">
+            <div class="row content">
+                <div class="well col-md-12">
+                    <h2>با ما در ارتباط باشید :</h2>
+                    <hr />
+                    @using (Html.BeginForm("", "", FormMethod.Post, new { @id = "login", enctype = "multipart/form-data" }))
+            {
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input placeholder="نام و نام خانوادگی" required class="form-control" id="validationCustomUsername" aria_describedby="inputGroupPrepend">
+                            </div>
+                            <label class="control-label col-md-2">نام و نام خانوادگی</label>
+                        </div>
+                        <br />
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <input type="email" placeholder="ایمیل" required class="form-control" id="validationCustomUsername" aria_describedby="inputGroupPrepend">
+                                </div>
+                                <label class="control-label col-md-2">ایمیل</label>
+                            </div>
+                            <br />
+                            <div class="form-label-group">
+                                <div class="col-md-10">
+                                    <textarea rows="10" cols="20" placeholder="پیام خو را اینجا بنویسید" required class="form-control" id="validationCustomUsername" aria_describedby="inputGroupPrepend"></textarea>
+                                </div>
+                                    <label class="control-label col-md-2">متن پیام</label>
+                                </div>
+                                <br />
+                                <div class="form-group col-md12">
+                                    <br /><br />
+                                    <div class="col-md-6">
+                                        <a href="/Home" class="btn btn-default"> بازگشت به صفحه اصلی <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="" class="btn btn-primary"> ارسال <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                    </div>
+                                    
+                                    <br />
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

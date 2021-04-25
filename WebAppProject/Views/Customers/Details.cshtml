@@ -1,0 +1,49 @@
+﻿@model WebAppProject.Models.Customers
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutForAdmin.cshtml";
+}
+
+
+<h2>جزئیات</h2>
+
+<div>
+    <h4>مشتری</h4>
+    <hr />
+
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Role.RoleName) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Role.RoleName)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.FullName) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.FullName)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Address) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Address)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.PhoneNumber) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.PhoneNumber)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Email) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Email)</li>
+    </ul>
+    <ul class="list-inline">
+
+        <li class="list-inline-item"><b>@Html.DisplayNameFor(model => model.Gender) :</b></li>
+        <li class="list-inline-item">@Html.DisplayFor(model => model.Gender)</li>
+    </ul>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.CustomersId }) |
+    @Html.ActionLink("بازگشت به لیست", "Index")
+</p>

@@ -1,0 +1,137 @@
+﻿@model IEnumerable<WebAppProject.Models.ShopCartViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutForCart.cshtml";
+}
+@if (ViewBag.UserIsAlive != null)
+{
+    @section  UserIsAlive
+        {
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i><a class="active" href="/Customers/CustomerDetail"> @ViewBag.UserIsAlive خوش آمدید</a> | <a href="~/account/Logout">خروج <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    }
+
+}
+@if (ViewBag.EmploeeIsAlive != null)
+{
+    @section  EmploeeIsAlive
+        {
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i><a class="active" href="/Emploees"> @ViewBag.EmploeeIsAlive خوش آمدید</a> |  <a href="~/account/Logout">خروج <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+    }
+}
+<style>
+    #customers {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+        }
+
+    .pic {
+        border: 1px solid #5042e3;
+        height: 110px;
+        border-radius: 50%;
+        width: 90px;
+        margin-top: 40px;
+        background: #acd4e1;
+    }
+
+    .table {
+        text-align: center;
+    }
+</style>
+
+<div class="col-md-12">
+    <br />
+    <div class="navbar navbar-inverse" style="background-color: #fff;border:none;">
+        <div class="col-md-12" style="padding-left:8px;padding-right:8px;text-align:right;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>سبد خرید شما :</h2>
+                        
+                        @if (ViewBag.error == null)
+                        {
+                            <table class="table table-bordered" dir="rtl" id="customers">
+                                <tr>
+                                    <th>ردیف</th>
+                                    <th>تصویر</th>
+                                    <th>نام کالا</th>
+                                    <th>تعداد</th>
+                                    <th>قیمت</th>
+                                    <th>جمع</th>
+                                    <th>دستورات</th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        @{ int rowNo = 0;}
+                                        <td class="success">@( rowNo++)</td>
+                                        <td>
+                                            @if (item.Image != null)
+                                            {
+                                                var base64 = Convert.ToBase64String(item.Image);
+                                                var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                                                <img src="@imgsrc" title="@Html.DisplayFor(model => item.Title)" style="height: 70px;">
+                                            }
+                                            else
+                                            {
+                                                <img src="" style="height: 250px;">
+                                            }
+                                        </td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Count</td>
+                                        <td>@item.Price.ToString("#,0 تومان") </td>
+                                        <td>@item.Sum.ToString("#,0 تومان") </td>
+                                        <td>
+                                            <a href="/Cart/DeleteCartItem/@item.ProductId" class="btn btn-danger btn-xs">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                            }
+                            </table>
+                            <ul>
+                                <li><b>تعداد مرسولات : @Model.Sum(a => a.Count)</b></li>
+                                <li><b>جمع کل قیمت واحد : @Model.Sum(a => a.Price).ToString("#,0 تومان") </b></li>
+                                <li><b>جمع کل فاکور : @Model.Sum(a => a.Sum).ToString("#,0 تومان")</b></li>
+                            </ul>
+                            <br />
+                            <div class="col-md-12">
+                                <div class="container-fluid">
+                                    <button class="btn btn-success"><a href="/Cart/Pay">ادامه فرآیند خرید و اتصال به درگاه بانکی</a></button>
+
+                                </div>
+                                <br>
+                            </div>
+                                            }
+                                            else
+                                            {
+                                                <h3 class="text-danger">@ViewBag.error</h3>
+                                            }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
